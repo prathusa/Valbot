@@ -865,6 +865,13 @@ class Bot:
         weaponselect = [['680','200'],['680','360'],['680','520'],['680','680'],['900','200'],['900','360'],['900','520'],['900','680'],['1180','200'],['1180','360'],['1180','520'],['1180','680']]
         # stinger, spectre, bucky, judge, bulldog, guardian, phantom, vandal, marshal, operator, ares, odin
         #each list entity contains the 1920x1080 res pixel coordinates to a gun in the buy menu. Goes from top to bottom of column then moves to next row
+        
+        # Convert to any screen coordinates
+        screenWidth, screenHeight = pyautogui.size()
+        for i in weaponselect:
+            weaponselect.append([str(int(i[0])/1920*screenWidth), str(int(i[1])/1080*screenHeight)])
+            weaponselect.remove(i)
+        
         randomweapon = random.choice(weaponselect)
 
         pyautogui.keyDown(self.buymenubutton)
