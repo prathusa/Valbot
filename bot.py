@@ -87,7 +87,7 @@ class Bot:
         # self.playagain_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/playagain.png", stream=True).raw)
         # self.start_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/start.png", stream=True).raw)
 
-        picdir = 'assets/new'
+        picdir = 'assets/1440p'
         self.cheaterdetected_png = "assets/cheated_detected.png"
         self.continueterminated_png = "assets/continue_terminated.png"
         self.deathmatch_png = f"{picdir}/deathmatch.png"
@@ -100,6 +100,7 @@ class Bot:
         self.start_png = f"{picdir}/start.png"
         self.skip_png = f"{picdir}/skip.png"
         self.quit_png = f"{picdir}/quit.png"
+        self.exit_png = f"{picdir}/exit.png"
         self.cancel_png = f"{picdir}/cancel.png"
         self.understand_png = f"{picdir}/understand.png"
         
@@ -286,6 +287,12 @@ class Bot:
         time.sleep(15)
         self.valorantrunning()
 
+    def test_main_screen(self):
+        pyautogui.press('esc')
+        mainscreen = self.found(self.exit_png)
+        pyautogui.press('esc')
+        return mainscreen
+
     def playbutton(self):
 
         now = time.time()
@@ -317,6 +324,11 @@ class Bot:
             print(Style.RESET_ALL)
             print(Fore.YELLOW + " [-] CHECKING FOR ANY PROMPTS")
             self.promptclicker()
+
+            print(Style.RESET_ALL)
+            print(Fore.YELLOW + " [-] CHECKING TO MAKE SURE ON MAIN SCREEN")
+            if not self.test_main_screen():
+                self.endofgame()
 
             play, play2 = self.locateOnScreen(self.play_png)
 
