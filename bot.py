@@ -371,7 +371,6 @@ class Bot:
                 self.pause()
             if self.too_long(future):
                 break
-                break
 
             deathmatch, deathmatch2 = self.locateOnScreen(self.deathmatch_png)
 
