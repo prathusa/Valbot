@@ -10,7 +10,7 @@ try:
     import os
     import time
     import urllib.request
-
+    import bot
 
     from PIL import Image
     from pathlib import Path
@@ -58,7 +58,7 @@ def main():
     
     
 
-    version = "Valbot v2.2  "
+    version = "Valbot v2.3 "
     versionstripped = version.replace("Valbot ", "")
     print(Style.RESET_ALL) 
     os.system('mode con: cols=39 lines=31')
@@ -73,7 +73,7 @@ def main():
       ╚╝  ╚╝ ╚╝╚═══╝╚═══╝╚═══╝  ╚╝
                            """ + Style.NORMAL + Fore.RED, Style.RESET_ALL)
 
-    print(Style.RESET_ALL + Fore.YELLOW + Style.BRIGHT + "     " + version + "         Fums#0888")
+    print(Style.RESET_ALL + Fore.YELLOW + Style.BRIGHT + " " + version + "Fums#0888 & Prathusa#0000")
     print(Style.RESET_ALL) 
     print(Style.RESET_ALL)
     print(Style.RESET_ALL + Fore.YELLOW + "———————————————————————————————————————")
@@ -105,13 +105,13 @@ def main():
             os.system('cls' if os.name=='nt' else 'clear')
             print(Style.RESET_ALL)
             print(Style.RESET_ALL)
-            print(Fore.YELLOW, "Valorant must be" + Style.BRIGHT, "WINDOWED FULLSCREEN")
+            print(Fore.YELLOW, "Valorant must be" + Style.BRIGHT, "FULLSCREEN")
             print(Style.NORMAL, "for the bot to function")
             print(Style.RESET_ALL)
             print(Fore.YELLOW, "Minimise any other open programs")
             print(Style.RESET_ALL)
             print(Fore.YELLOW, "Valorant must be in English and be ")
-            print(Fore.YELLOW, "1920 x 1080 resolution")
+            print(Fore.YELLOW, "1440p resolution")
 
 
             print(Style.RESET_ALL)
@@ -173,7 +173,9 @@ def main():
                         pass
                 print(Style.RESET_ALL)
                 time.sleep(7)
-                os.startfile("bot.py")
+                bot.main()
+                # os.system('py bot.py')
+                # os.startfile("bot.py")
                 time.sleep(.5)
                 quit()
             else:

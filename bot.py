@@ -1,6 +1,6 @@
 print ("VALBOT IS LOADING...")
 print()
-print("WRITTEN BY FUMS")
+print("WRITTEN BY FUMS & Pratham")
 print()
 print()
 # https://open.spotify.com/track/152unnv8fuahIUyVnHJutJ?si=oK5FgV8ZQH66chbGCDyl3A
@@ -41,7 +41,7 @@ start_time = time.time()
 
 pyautogui.FAILSAFE = False
 
-class bot:
+class Bot:
     def __init__(self):
 
         self.buymenubutton = "b" # what button you use to open the buy menu to choose weapons
@@ -65,7 +65,7 @@ class bot:
             except Exception:
                 self.foundwebhook = False
 
-        self.versionfix = "Valbot v2.2  " #add two spaces if version number is vx.x and remove spaces if vx.x.x
+        self.versionfix = "Valbot v2.3 " #add two spaces if version number is vx.x and remove spaces if vx.x.x
         self.versionnumber = self.versionfix.replace("Valbot ", "") #add two spaces if version number is vx.x and remove spaces if vx.x.x
         self.versionnumber = self.versionnumber.replace("  ", "") #add two spaces if version number is vx.x and remove spaces if vx.x.x
         self.version = "Valbot " + self.versionnumber  # variable str to change valbot version name in outputs
@@ -77,27 +77,31 @@ class bot:
         # Why take from raw GitHub repo? So I can update the bots detection images without having to release an update.
         # Change it manually if you wish by reading the valbotReadMe folder called change_resolution.txt
 
-        self.cheaterdetected_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/cheated_detected.png", stream=True).raw)
-        self.continueterminated_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/continue_terminated.png", stream=True).raw)
-        self.deathmatch_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/deathmatch.png", stream=True).raw)
-        self.ingame_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/ingame.png", stream=True).raw)
-        self.inqueue_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/inqueue.png", stream=True).raw)
-        self.ondeathmatch_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/ondeathmatch.png", stream=True).raw)
-        self.play_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/play.png", stream=True).raw)
-        self.playagain_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/playagain.png", stream=True).raw)
-        self.start_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/start.png", stream=True).raw)
+        # self.cheaterdetected_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/cheated_detected.png", stream=True).raw)
+        # self.continueterminated_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/continue_terminated.png", stream=True).raw)
+        # self.deathmatch_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/deathmatch.png", stream=True).raw)
+        # self.ingame_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/ingame.png", stream=True).raw)
+        # self.inqueue_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/inqueue.png", stream=True).raw)
+        # self.ondeathmatch_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/ondeathmatch.png", stream=True).raw)
+        # self.play_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/play.png", stream=True).raw)
+        # self.playagain_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/playagain.png", stream=True).raw)
+        # self.start_png = Image.open(requests.get("https://raw.githubusercontent.com/MrFums/ValbotAssets/main/valbot_assets_1920_1080/start.png", stream=True).raw)
 
-
-        #self.cheaterdetected_png = "assets/cheated_detected.png"
-        #self.continueterminated_png = "assets/continue_terminated.png"
-        #self.deathmatch_png = "assets/deathmatch.png"
-        #self.ingame_png = "assets/ingame.png"
-        #self.inqueue_png = "assets/inqueue.png"
-        #self.ondeathmatch_png = "assets/ondeathmatch.png"
-        #self.play_png = "assets/play.png"
-        #self.playagain_png = "assets/playagain.png"
-        #self.start_png = "assets/start.png"
-
+        picdir = 'assets/new'
+        self.cheaterdetected_png = "assets/cheated_detected.png"
+        self.continueterminated_png = "assets/continue_terminated.png"
+        self.deathmatch_png = f"{picdir}/deathmatch.png"
+        self.ondeathmatch_png = f"{picdir}/ondeathmatch.png"
+        self.ingame_png = f"{picdir}/ingame.png"
+        self.inqueue_png = f"{picdir}/inqueue.png"
+        self.play_png = f"{picdir}/play.png"
+        # self.onplay_png = f"{picdir}/onplay.png"
+        self.playagain_png = f"{picdir}/playagain.png"
+        self.start_png = f"{picdir}/start.png"
+        self.skip_png = f"{picdir}/skip.png"
+        self.quit_png = f"{picdir}/quit.png"
+        self.cancel_png = f"{picdir}/cancel.png"
+        self.understand_png = f"{picdir}/understand.png"
         
         try:  # if cant connect to discord (if it isnt open for example), bot doesnt crash
             self.RPC = Presence(client_id="772841390467711041")  # discord rpc client id
@@ -126,6 +130,15 @@ class bot:
         except:
             pass
         
+    def locateOnScreen(self, file, confidence=.6):
+        one = pyautogui.locateOnScreen(file, grayscale=True)
+        two = pyautogui.locateOnScreen(file, confidence=confidence, grayscale=True)
+        return one, two
+    
+    def found(self, file, confidence=.6):
+        one, two = self.locateOnScreen(file, confidence=confidence)
+        return one is not None or two is not None
+
     def restartbot(self):  # restarts the bot after 1 hour
         self.titlescreen()
         print(Fore.RED + " [!] BOT IS RESTARTING AFTER 1 HOUR")
@@ -158,9 +171,10 @@ class bot:
 
 
         time.sleep(1)
-        os.startfile('restart.py')  # starts the restart script which reopens this script
-        time.sleep(3)
-        quit()  # quits this runtime of the script
+        main()
+        # os.startfile('restart.py')  # starts the restart script which reopens this script
+        # time.sleep(3)
+        # quit()  # quits this runtime of the script
 
     def titlescreen(self):
 
@@ -177,7 +191,7 @@ class bot:
              ╚╝  ╚╝ ╚╝╚═══╝╚═══╝╚═══╝  ╚╝""")
 
         print(Style.RESET_ALL)
-        print(Style.RESET_ALL + Fore.YELLOW + Style.BRIGHT + "           " + self.versionfix + "         Fums#0888")
+        print(Style.RESET_ALL + Fore.YELLOW + Style.BRIGHT + " " + self.versionfix + "Fums#0888 & Prathusa#0000")
         print(Style.RESET_ALL)
         print(Style.RESET_ALL)
         print(Style.RESET_ALL + Fore.YELLOW + "——————————————————————————————————————————————————————")
@@ -282,7 +296,7 @@ class bot:
 
         except Exception:
             pass
-
+        
         print(Style.RESET_ALL)
         print(Fore.YELLOW + " [-] SEARCHING FOR PLAY BUTTON")
         time.sleep(.5)
@@ -296,8 +310,11 @@ class bot:
                 self.startvalorant()
                 break
 
-            play = pyautogui.locateOnScreen(self.play_png, grayscale=True)
-            play2 = pyautogui.locateOnScreen(self.play_png, confidence=0.6, grayscale=True)
+            print(Style.RESET_ALL)
+            print(Fore.YELLOW + " [-] CHECKING FOR ANY PROMPTS")
+            self.promptclicker()
+
+            play, play2 = self.locateOnScreen(self.play_png)
 
             if play is not None or play2 is not None:
                 print(Style.RESET_ALL)
@@ -306,14 +323,16 @@ class bot:
                 if play is not None:
                     time.sleep(1)
                     pyautogui.moveTo(play)
-                    pyautogui.click(play)
+                    pyautogui.moveRel(10, -5, duration=1)  
+                    pyautogui.click()
                     time.sleep(2)
                     self.playbuttonclicked()
 
                 if play2 is not None:
                     time.sleep(1)
                     pyautogui.moveTo(play2)
-                    pyautogui.click(play2)
+                    pyautogui.moveRel(10, -5, duration=1)  
+                    pyautogui.click()
                     time.sleep(2)
                     self.playbuttonclicked()
 
@@ -337,14 +356,14 @@ class bot:
                 self.startvalorant()
                 break
 
-            deathmatch = pyautogui.locateOnScreen(self.deathmatch_png, grayscale=True)
-            deathmatch2 = pyautogui.locateOnScreen(self.deathmatch_png, confidence=0.6, grayscale=True)
+            deathmatch, deathmatch2 = self.locateOnScreen(self.deathmatch_png)
 
-            if deathmatch is not None or deathmatch2 is not None:
+            if deathmatch is not None or deathmatch2 is not None and not self.found(self.ondeathmatch_png):
                 print(Style.RESET_ALL)
                 print(Fore.GREEN + " [√] DETECTED DEATHMATCH BUTTON")
 
                 if deathmatch is not None:
+                    # print('dm1')
                     pyautogui.moveTo(deathmatch)
                     pyautogui.click(deathmatch)
                     time.sleep(.5)
@@ -352,6 +371,7 @@ class bot:
                     self.deathmatchbuttonclicked()
 
                 if deathmatch2 is not None:
+                    # print('dm2')
                     pyautogui.moveTo(deathmatch2)
                     pyautogui.click(deathmatch2)
                     time.sleep(.5)
@@ -379,24 +399,12 @@ class bot:
                 self.startvalorant()
                 break
 
-            ondeathmatch = pyautogui.locateOnScreen(self.ondeathmatch_png, grayscale=True)
-            ondeathmatch2 = pyautogui.locateOnScreen(self.ondeathmatch_png, grayscale=True, confidence=0.5)
-
-            if ondeathmatch is not None or ondeathmatch2 is not None:
-
-                if ondeathmatch is not None:
-                    print(Style.RESET_ALL)
-                    print(Fore.GREEN + " [√] DETECTED THAT DEATHMATCH IS SELECTED")
-                    time.sleep(1)
-                    self.searchforgame()
-
-                if ondeathmatch2 is not None:
-                    print(Style.RESET_ALL)
-                    print(Fore.GREEN + " [√] DETECTED THAT DEATHMATCH IS SELECTED")
-                    time.sleep(1)
-                    self.searchforgame()
-
-            if ondeathmatch is None or ondeathmatch2 is None:
+            if self.found(self.ondeathmatch_png, confidence=0.5):
+                print(Style.RESET_ALL)
+                print(Fore.GREEN + " [√] DETECTED THAT DEATHMATCH IS SELECTED")
+                time.sleep(1)
+                self.searchforgame()
+            else:
                 print(Style.RESET_ALL)
                 print(Fore.RED + " [!] DETECTED THAT DEATHMATCH IS NOT SELECTED")
                 time.sleep(1)
@@ -421,24 +429,12 @@ class bot:
                 self.startvalorant()
                 break
 
-            onplay = pyautogui.locateOnScreen(self.start_png, grayscale=True)
-            onplay2 = pyautogui.locateOnScreen(self.start_png, grayscale=True, confidence=0.5)
-
-            if onplay is not None or onplay2 is not None:
-
-                if onplay is not None:
-                    print(Style.RESET_ALL)
-                    print(Fore.GREEN + " [√] DETECTED THAT PLAY BUTTON IS SELECTED")
-                    time.sleep(1)
-                    self.deathmatchbutton()
-
-                if onplay2 is not None:
-                    print(Style.RESET_ALL)
-                    print(Fore.GREEN + " [√] DETECTED THAT PLAY BUTTON IS SELECTED")
-                    time.sleep(1)
-                    self.deathmatchbutton()
-
-            if onplay is None or onplay2 is None:
+            if self.found(self.start_png, confidence=0.5):
+                print(Style.RESET_ALL)
+                print(Fore.GREEN + " [√] DETECTED THAT PLAY BUTTON IS SELECTED")
+                time.sleep(1)
+                self.deathmatchbutton()
+            else:
                 print(Style.RESET_ALL)
                 print(Fore.RED + " [!] DETECTED THAT PLAY BUTTON IS NOT SELECTED")
                 time.sleep(1)
@@ -488,11 +484,8 @@ class bot:
                 self.startvalorant()
                 break
 
-            startbutton = pyautogui.locateOnScreen(self.start_png, grayscale=True)
-            start2 = pyautogui.locateOnScreen(self.start_png, confidence=0.6, grayscale=True)
-
-            again = pyautogui.locateOnScreen(self.playagain_png, grayscale=True)
-            again2 = pyautogui.locateOnScreen(self.playagain_png, confidence=0.6, grayscale=True)
+            startbutton, start2 = self.locateOnScreen(self.start_png)
+            again, again2 = self.locateOnScreen(self.playagain_png)
 
             if startbutton is not None or start2 is not None or again is not None or again2 is not None:
                 print(Style.RESET_ALL)
@@ -502,6 +495,7 @@ class bot:
                     pyautogui.click(x=960, y=540)
                     time.sleep(.5)
                     pyautogui.moveTo(startbutton)
+                    time.sleep(.3)
                     pyautogui.click(startbutton)
                     self.inqueue()
 
@@ -509,6 +503,7 @@ class bot:
                     pyautogui.click(x=960, y=540)
                     time.sleep(.5)
                     pyautogui.moveTo(start2)
+                    time.sleep(.3)
                     pyautogui.click(start2)
                     self.inqueue()
 
@@ -544,24 +539,14 @@ class bot:
                 self.startvalorant()
                 break
 
-            q = pyautogui.locateOnScreen(self.inqueue_png, grayscale=True)
-            q2 = pyautogui.locateOnScreen(self.inqueue_png, grayscale=True, confidence=0.6)
-
-            if q is not None or q2 is not None:
-                if q is not None:
-                    print(Style.RESET_ALL)
-                    print(Fore.GREEN + " [√] DETECTED IN QUEUE")
-                    self.waitingforgame()
-                if q2 is not None:
-                    print(Style.RESET_ALL)
-                    print(Fore.GREEN + " [√] DETECTED IN QUEUE")
-                    self.waitingforgame()
-
-            if q is None:
+            if self.found(self.inqueue_png):
+                print(Style.RESET_ALL)
+                print(Fore.GREEN + " [√] DETECTED IN QUEUE")
+                self.waitingforgame()
+            else:
                 print(Style.RESET_ALL)
                 print(Fore.RED + " [!] DETECTED NOT IN QUEUE")
                 time.sleep(1)
-
                 self.playbutton()
 
     def waitingforgame(self):
@@ -600,11 +585,7 @@ class bot:
                 self.startvalorant()
                 break
 
-            ingame = pyautogui.locateOnScreen(self.ingame_png)
-            ingame2 = pyautogui.locateOnScreen(self.ingame_png, confidence=0.5)
-
-
-            if ingame is not None or ingame2 is not None:
+            if self.found(self.ingame_png, confidence=0.5):
                 print(Style.RESET_ALL)
                 print(Fore.GREEN + " [√] DETECTED IN A GAME")
 
@@ -678,18 +659,11 @@ class bot:
             except:
                 pass
 
-        menu = pyautogui.locateOnScreen(self.play_png, grayscale=True)
-        menu2 = pyautogui.locateOnScreen(self.play_png, confidence=0.7, grayscale=True)
-        q = pyautogui.locateOnScreen(self.inqueue_png, grayscale=True)
-        q2 = pyautogui.locateOnScreen(self.inqueue_png, grayscale=True, confidence=0.6)
-
-        if menu is not None or menu2 is not None:
+        if self.found(self.play_png, confidence=0.7):
             self.playbutton()
-
-        if q is not None or q2 is not None:
+        if self.found(self.inqueue_png):
             self.inqueue()
-
-        if q is None or q2 is None or menu is None or menu2 is None:
+        if not self.found(self.play_png, confidence=0.7) and not self.found(self.inqueue_png):
             self.antiafk()
 
     def endofgame(self):
@@ -706,10 +680,7 @@ class bot:
                 self.startvalorant()
                 break
 
-            menu = pyautogui.locateOnScreen(self.play_png, grayscale=True)
-            menu2 = pyautogui.locateOnScreen(self.play_png, confidence=0.7, grayscale=True)
-
-            if menu is not None or menu2 is not None:
+            if self.found(self.play_png, confidence=0.7):
 
                 activeactivity = "[" + self.versionnumber + "] - " + "At Menu"
 
@@ -729,6 +700,8 @@ class bot:
                 print(Style.RESET_ALL)
                 print(Fore.GREEN + " [√] DETECTED AT END GAME SCREEN")
 
+                # time.sleep(2)
+                self.promptclicker()
                 time.sleep(2)
                 self.xpscreen()
 
@@ -815,16 +788,90 @@ class bot:
         quit()
 
 
+    def promptclicker(self):
+        skip, skip2 = self.locateOnScreen(self.skip_png)
+        quit, quit2 = self.locateOnScreen(self.quit_png)
+        cancel, cancel2 = self.locateOnScreen(self.cancel_png)
+        understand, understand2 = self.locateOnScreen(self.understand_png)
+        if quit is not None or quit2 is not None:
+            print(Style.RESET_ALL)
+            print(Fore.RED + " [!] DETECTED QUIT BUTTON")
+
+            if quit is not None:
+                time.sleep(1)
+                pyautogui.moveTo(quit)
+                pyautogui.click(quit)
+                time.sleep(7)
+                self.startvalorant()
+
+            if quit2 is not None:
+                time.sleep(1)
+                pyautogui.moveTo(quit2)
+                pyautogui.click(quit2)
+                time.sleep(7)
+                self.startvalorant()
+            
+            print(Style.RESET_ALL)
+            print(Fore.GREEN + " [√] RESTARTED VALORANT")
+
+        if skip is not None or skip2 is not None:
+            print(Style.RESET_ALL)
+            print(Fore.YELLOW + " [-] DETECTED SKIP BUTTON")
+
+            if skip is not None:
+                time.sleep(1)
+                pyautogui.moveTo(skip)
+                pyautogui.click(skip)
+
+            if skip2 is not None:
+                time.sleep(1)
+                pyautogui.moveTo(skip2)
+                pyautogui.click(skip2)
+            
+            print(Style.RESET_ALL)
+            print(Fore.GREEN + " [√] CLICKED SKIP BUTTON")
+        
+        if cancel is not None or cancel2 is not None:
+            print(Style.RESET_ALL)
+            print(Fore.YELLOW + " [!] DETECTED CANCEL BUTTON")
+
+            if cancel is not None:
+                time.sleep(1)
+                pyautogui.moveTo(cancel)
+                pyautogui.click(cancel)
+
+            if cancel2 is not None:
+                time.sleep(1)
+                pyautogui.moveTo(cancel2)
+                pyautogui.click(cancel2)
+            
+            print(Style.RESET_ALL)
+            print(Fore.GREEN + " [√] CLICKED CANCEL BUTTON")
+        
+        if understand is not None or understand2 is not None:
+            print(Style.RESET_ALL)
+            print(Fore.YELLOW + " [!] DETECTED UNDERSTAND BUTTON")
+
+            if understand is not None:
+                time.sleep(1)
+                pyautogui.moveTo(understand)
+                pyautogui.click(understand)
+
+            if understand2 is not None:
+                time.sleep(1)
+                pyautogui.moveTo(understand2)
+                pyautogui.click(understand2)
+            
+            print(Style.RESET_ALL)
+            print(Fore.GREEN + " [√] CLICKED UNDERSTAND BUTTON")
+
     def antiafk(self):
         time.sleep(.5)
-        n = randint(20, 35)
+        n = randint(3, 11)
         a = 0
 
-        cheater = pyautogui.locateOnScreen(self.cheaterdetected_png, grayscale=True)
-        cheater1 = pyautogui.locateOnScreen(self.cheaterdetected_png, grayscale=True, confidence=0.6)
-
         cheatercontinue = pyautogui.locateOnScreen(self.continueterminated_png, grayscale=True)
-        cheatercontinue1 = pyautogui.locateOnScreen(self.continueterminated_png, grayscale=True, confidence=0.6)
+        cheatercontinue1 = pyautogui.locateOnScreen(self.continueterminated_png, grayscale=True)
 
 
         weaponselect = [['680','200'],['680','360'],['680','520'],['680','680'],['900','200'],['900','360'],['900','520'],['900','680'],['1180','200'],['1180','360'],['1180','520'],['1180','680']]
@@ -851,8 +898,8 @@ class bot:
         while a <= n:
             if keyboard.is_pressed('f3'):
                 self.pause()
-
-            if cheater is not None or cheater1 is not None:
+            self.promptclicker()
+            if self.found(self.cheaterdetected_png):
 
                 if self.foundwebhook == True:
                     try:
@@ -979,9 +1026,7 @@ class bot:
                 self.startvalorant()
                 break
 
-            xpscreen = pyautogui.locateOnScreen(self.play_png, grayscale=True)
-            xpscreen2 = pyautogui.locateOnScreen(self.play_png, confidence=0.6, grayscale=True)
-            if xpscreen is not None or xpscreen2 is not None:
+            if self.found(self.play_png):
                 print(Style.RESET_ALL)
                 print(Fore.GREEN + " [√] DETECTED THE XP SCREEN")
                 time.sleep(2)
@@ -1157,5 +1202,9 @@ class bot:
                 time.sleep(5)
                 self.playbutton()
 
-bot = bot()
-bot.firststart()
+def main():
+    bot = Bot()
+    bot.firststart()
+  
+if __name__=="__main__":
+    main()
