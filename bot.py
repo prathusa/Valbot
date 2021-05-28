@@ -139,6 +139,14 @@ class Bot:
         one, two = self.locateOnScreen(file, confidence=confidence)
         return one is not None or two is not None
 
+    def too_long(self, future):
+        if time.time() > future:
+            # detects possible issue with valorant and restarts the game
+            print(Style.RESET_ALL)
+            print(Fore.RED + " [!] FOUND A POSSIBLE ERROR WITH VALORANT")
+            self.startvalorant()
+            return True
+
     def restartbot(self):  # restarts the bot after 1 hour
         self.titlescreen()
         print(Fore.RED + " [!] BOT IS RESTARTING AFTER 1 HOUR")
@@ -303,11 +311,7 @@ class Bot:
         while True:
             if keyboard.is_pressed('f3'):
                 self.pause()
-            if time.time() > future:
-                # detects possible issue with valorant and restarts the game
-                print(Style.RESET_ALL)
-                print(Fore.RED + " [!] FOUND A POSSIBLE ERROR WITH VALORANT")
-                self.startvalorant()
+            if self.too_long(future):
                 break
 
             print(Style.RESET_ALL)
@@ -349,33 +353,28 @@ class Bot:
         while True:
             if keyboard.is_pressed('f3'):
                 self.pause()
-            if time.time() > future:
-                # detects possible issue with valorant and restarts the game
-                print(Style.RESET_ALL)
-                print(Fore.RED + " [!] FOUND A POSSIBLE ERROR WITH VALORANT")
-                self.startvalorant()
+            if self.too_long(future):
+                break
                 break
 
             deathmatch, deathmatch2 = self.locateOnScreen(self.deathmatch_png)
 
-            if deathmatch is not None or deathmatch2 is not None and not self.found(self.ondeathmatch_png):
+            if deathmatch is not None or deathmatch2 is not None:
                 print(Style.RESET_ALL)
                 print(Fore.GREEN + " [√] DETECTED DEATHMATCH BUTTON")
 
                 if deathmatch is not None:
-                    # print('dm1')
+                    print('dm1')
                     pyautogui.moveTo(deathmatch)
                     pyautogui.click(deathmatch)
                     time.sleep(.5)
-                    pyautogui.click(x=960, y=540)
                     self.deathmatchbuttonclicked()
 
                 if deathmatch2 is not None:
-                    # print('dm2')
+                    print('dm2')
                     pyautogui.moveTo(deathmatch2)
                     pyautogui.click(deathmatch2)
                     time.sleep(.5)
-                    pyautogui.click(x=960, y=540)
                     self.deathmatchbuttonclicked()
 
                 time.sleep(5)
@@ -392,11 +391,8 @@ class Bot:
         while True:
             if keyboard.is_pressed('f3'):
                 self.pause()
-            if time.time() > future:
-                # detects possible issue with valorant and restarts the game
-                print(Style.RESET_ALL)
-                print(Fore.RED + " [!] FOUND A POSSIBLE ERROR WITH VALORANT")
-                self.startvalorant()
+            if self.too_long(future):
+                break
                 break
 
             if self.found(self.ondeathmatch_png, confidence=0.5):
@@ -422,11 +418,8 @@ class Bot:
         while True:
             if keyboard.is_pressed('f3'):
                 self.pause()
-            if time.time() > future:
-                # detects possible issue with valorant and restarts the game
-                print(Style.RESET_ALL)
-                print(Fore.RED + " [!] FOUND A POSSIBLE ERROR WITH VALORANT")
-                self.startvalorant()
+            if self.too_long(future):
+                break
                 break
 
             if self.found(self.start_png, confidence=0.5):
@@ -477,11 +470,8 @@ class Bot:
         while True:
             if keyboard.is_pressed('f3'):
                 self.pause()
-            if time.time() > future:
-                # detects possible issue with valorant and restarts the game
-                print(Style.RESET_ALL)
-                print(Fore.RED + " [!] FOUND A POSSIBLE ERROR WITH VALORANT")
-                self.startvalorant()
+            if self.too_long(future):
+                break
                 break
 
             startbutton, start2 = self.locateOnScreen(self.start_png)
@@ -492,7 +482,6 @@ class Bot:
                 print(Fore.GREEN + " [√] DETECTED START BUTTON")
 
                 if startbutton is not None:
-                    pyautogui.click(x=960, y=540)
                     time.sleep(.5)
                     pyautogui.moveTo(startbutton)
                     time.sleep(.3)
@@ -500,7 +489,6 @@ class Bot:
                     self.inqueue()
 
                 if start2 is not None:
-                    pyautogui.click(x=960, y=540)
                     time.sleep(.5)
                     pyautogui.moveTo(start2)
                     time.sleep(.3)
@@ -508,14 +496,12 @@ class Bot:
                     self.inqueue()
 
                 if again is not None:
-                    pyautogui.click(x=960, y=540)
                     time.sleep(.5)
                     pyautogui.moveTo(again2)
                     pyautogui.click(again2)
                     self.inqueue()
 
                 if again2 is not None:
-                    pyautogui.click(x=960, y=540)
                     time.sleep(.5)
                     pyautogui.moveTo(again2)
                     pyautogui.click(again2)
@@ -532,11 +518,8 @@ class Bot:
         while True:
             if keyboard.is_pressed('f3'):
                 self.pause()
-            if time.time() > future:
-                # detects possible issue with valorant and restarts the game
-                print(Style.RESET_ALL)
-                print(Fore.RED + " [!] FOUND A POSSIBLE ERROR WITH VALORANT")
-                self.startvalorant()
+            if self.too_long(future):
+                break
                 break
 
             if self.found(self.inqueue_png):
@@ -578,11 +561,8 @@ class Bot:
         while True:
             if keyboard.is_pressed('f3'):
                 self.pause()
-            if time.time() > future:
-                # detects possible issue with valorant and restarts the game
-                print(Style.RESET_ALL)
-                print(Fore.RED + " [!] FOUND A POSSIBLE ERROR WITH VALORANT")
-                self.startvalorant()
+            if self.too_long(future):
+                break
                 break
 
             if self.found(self.ingame_png, confidence=0.5):
@@ -605,7 +585,6 @@ class Bot:
                 except Exception:
                     pass
                 
-                pyautogui.click(x=960, y=540)
 
                 if self.foundwebhook == True:
                     try:
@@ -631,7 +610,7 @@ class Bot:
                 time.sleep(1)
                 print(Style.RESET_ALL)
                 print(Fore.YELLOW + " [-] WAITING FOR THE GAME TO END")
-                time.sleep(35)  # so it doesnt detect the end game screen as soon as it searches
+                time.sleep(15)  # so it doesnt detect the end game screen as soon as it searches
                 print(Style.RESET_ALL)
                 print(Fore.YELLOW + " [-] TO PAUSE THE BOT HOLD F3")
                 print(Fore.YELLOW + " [-] TO RESUME THE BOT HOLD F4")
@@ -673,11 +652,7 @@ class Bot:
         while True:
             if keyboard.is_pressed('f3'):
                 self.pause()
-            if time.time() > self.deathmatch_duration:
-                # detects possible issue with valorant and restarts the game
-                print(Style.RESET_ALL)
-                print(Fore.RED + " [!] FOUND A POSSIBLE ERROR WITH VALORANT")
-                self.startvalorant()
+            if self.too_long(self.deathmatch_duration):
                 break
 
             if self.found(self.play_png, confidence=0.7):
@@ -930,11 +905,7 @@ class Bot:
             a += 1
             n2 = randint(1, 8)
 
-            if time.time() > self.deathmatch_duration:
-                # detects possible issue with valorant and restarts the game
-                print(Style.RESET_ALL)
-                print(Fore.RED + " [!] FOUND A POSSIBLE ERROR WITH VALORANT")
-                self.startvalorant()
+            if self.too_long(self.deathmatch_duration):
                 break
 
             if n2 == 1:
@@ -1019,11 +990,8 @@ class Bot:
         while True:
             if keyboard.is_pressed('f3'):
                 self.pause()
-            if time.time() > future:
-                # detects possible issue with valorant and restarts the game
-                print(Style.RESET_ALL)
-                print(Fore.RED + " [!] FOUND A POSSIBLE ERROR WITH VALORANT")
-                self.startvalorant()
+            if self.too_long(future):
+                break
                 break
 
             if self.found(self.play_png):
@@ -1134,10 +1102,7 @@ class Bot:
                     print(Style.RESET_ALL)
                     print(Fore.RED + " [!] DISCORD WEBHOOK IS NOT SETUP")
 
-                time.sleep(4)
-                pyautogui.click(x=960, y=540)
                 time.sleep(1)
-
 
                 if os.path.exists('config.ini'):
                     config = ConfigParser(allow_no_value=True)
