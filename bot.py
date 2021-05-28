@@ -288,9 +288,11 @@ class Bot:
         self.valorantrunning()
 
     def test_main_screen(self):
-        pyautogui.press('esc')
+        screenWidth, screenHeight = pyautogui.size()
+        pyautogui.click(screenWidth, screenHeight)
         mainscreen = self.found(self.exit_png)
-        pyautogui.press('esc')
+        pyautogui.keyDown('esc')
+        pyautogui.keyUp('esc')
         return mainscreen
 
     def playbutton(self):
@@ -325,10 +327,10 @@ class Bot:
             print(Fore.YELLOW + " [-] CHECKING FOR ANY PROMPTS")
             self.promptclicker()
 
-            print(Style.RESET_ALL)
-            print(Fore.YELLOW + " [-] CHECKING TO MAKE SURE ON MAIN SCREEN")
-            if not self.test_main_screen():
-                self.endofgame()
+            # print(Style.RESET_ALL)
+            # print(Fore.YELLOW + " [-] CHECKING TO MAKE SURE ON MAIN SCREEN")
+            # if not self.test_main_screen():
+            #     self.endofgame()
 
             play, play2 = self.locateOnScreen(self.play_png)
 
@@ -351,6 +353,8 @@ class Bot:
                     pyautogui.click()
                     time.sleep(2)
                     self.playbuttonclicked()
+            else:
+                self.endofgame()
 
     def deathmatchbutton(self):
 
@@ -376,14 +380,12 @@ class Bot:
                 print(Fore.GREEN + " [√] DETECTED DEATHMATCH BUTTON")
 
                 if deathmatch is not None:
-                    print('dm1')
                     pyautogui.moveTo(deathmatch)
                     pyautogui.click(deathmatch)
                     time.sleep(.5)
                     self.deathmatchbuttonclicked()
 
                 if deathmatch2 is not None:
-                    print('dm2')
                     pyautogui.moveTo(deathmatch2)
                     pyautogui.click(deathmatch2)
                     time.sleep(.5)

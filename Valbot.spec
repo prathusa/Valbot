@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(['Valbot.py'],
-             pathex=['c:\\Users\\prath\\Documents\\GitHub\\Valbot'],
+             pathex=['C:\\Users\\prath\\Documents\\GitHub\\Valbot'],
              binaries=[],
              datas=[('assets/', 'assets/')],
              hiddenimports=[],
