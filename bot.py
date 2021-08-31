@@ -19,6 +19,7 @@ try:
     import datetime
     import random
     import platform
+    import shutil
 
     from pypresence import Presence
     from PIL import Image
@@ -49,7 +50,7 @@ class Bot:
         self.restarted = 0  # how many times the bot has restarted during runtime
         self.gamesplayed = 0  # num of games played during runtime
         self.restarttime = time.time() + 3600 # 1 hour after starting bot
-
+        # self.deathmatch_duration = 0
         self.foundwebhook = False
 
         config = ConfigParser(allow_no_value=True)
@@ -448,8 +449,6 @@ class Bot:
 
     def firststart(self):
 
-
-
         self.titlescreen()
         foundval = False
         for proc in psutil.process_iter():
@@ -484,7 +483,6 @@ class Bot:
             if keyboard.is_pressed('f3'):
                 self.pause()
             if self.too_long(future):
-                break
                 break
 
             startbutton, start2 = self.locateOnScreen(self.start_png)
@@ -576,7 +574,6 @@ class Bot:
                 self.pause()
             if self.too_long(future):
                 break
-                break
 
             if self.found(self.ingame_png, confidence=0.5):
                 print(Style.RESET_ALL)
@@ -627,8 +624,7 @@ class Bot:
                 print(Style.RESET_ALL)
                 print(Fore.YELLOW + " [-] TO PAUSE THE BOT HOLD F3")
                 print(Fore.YELLOW + " [-] TO RESUME THE BOT HOLD F4")
-                self.deathmatch_duration = time.time()
-                self.deathmatch_duration += 780
+                # self.deathmatch_duration = time.time() + 780
                 self.endofgame()
 
     def pause(self):
@@ -661,11 +657,11 @@ class Bot:
     def endofgame(self):
 
         time.sleep(2)
-
+        deathmatch_duration = time.time() + 780
         while True:
             if keyboard.is_pressed('f3'):
                 self.pause()
-            if self.too_long(self.deathmatch_duration):
+            if self.too_long(deathmatch_duration):
                 break
 
             if self.found(self.play_png, confidence=0.7):
@@ -889,7 +885,7 @@ class Bot:
         pyautogui.keyUp(self.buymenubutton)
         time.sleep(randint(6, 9) / 10)
         
-
+        deathmatch_duration = time.time() + 780
         while a <= n:
             if keyboard.is_pressed('f3'):
                 self.pause()
@@ -925,7 +921,7 @@ class Bot:
             a += 1
             n2 = randint(1, 8)
 
-            if self.too_long(self.deathmatch_duration):
+            if self.too_long(deathmatch_duration):
                 break
 
             if n2 == 1:
@@ -1188,8 +1184,8 @@ class Bot:
                 self.playbutton()
 
 def main():
-    bot = Bot()
-    bot.firststart()
+    bot_obj = Bot()
+    bot_obj.firststart()
   
 if __name__=="__main__":
     main()
